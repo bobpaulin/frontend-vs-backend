@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bobpaulin.shared.data.MessageDataService;
 
-@Path("/message")
+@Path("/messages")
 public class MessageService {
     
     @Autowired

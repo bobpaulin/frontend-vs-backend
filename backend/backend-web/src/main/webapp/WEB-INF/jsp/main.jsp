@@ -24,16 +24,27 @@
 		</div>
 		<h1>Welcome to the Backend Page</h1>
 		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="span6">${user.firstName }</div>
-				<div class="span6">${user.lastName }</div>
+			<div id="userContainer">
+				<div class="row-fluid">
+					<div class="span6">${user.firstName }</div>
+					<div class="span6">${user.lastName }</div>
+				</div>
 			</div>
-			<c:forEach items="${messageList}" var="currentMessage">
-			<div class="row-fluid">
-				<div class="span6">${currentMessage.message }</div>
-				<div class="span6">${currentMessage.userName }</div>
+			<div id="messagesContainer">
+				<div class="row-fluid">
+					<div class="span12">
+						<h2>Your Messages</h2>
+						<div class="messages">
+							<c:forEach items="${messageList}" var="currentMessage">
+							<div class="row-fluid">
+								<div class="span6">${currentMessage.message }</div>
+								<div class="span6">${currentMessage.userName }</div>
+							</div>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
 			</div>
-			</c:forEach>
 		</div>
 	</body>
 </html>
