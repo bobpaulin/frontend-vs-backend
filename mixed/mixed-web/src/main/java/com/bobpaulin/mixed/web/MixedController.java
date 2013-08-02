@@ -1,4 +1,4 @@
-package com.bobpaulin.backend.web;
+package com.bobpaulin.mixed.web;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ import com.bobpaulin.shared.model.User;
 
 @Controller
 @RequestMapping("/main")
-public class BackendController {
+public class MixedController {
     
     @Autowired
     private UserDataService userDataService;

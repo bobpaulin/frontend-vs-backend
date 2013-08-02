@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.bobpaulin.backend</groupId>
-	<artifactId>backend-web</artifactId>
+	<groupId>com.bobpaulin.mixed</groupId>
+	<artifactId>mixed-web</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>backend-web Maven Webapp</name>
+	<name>Mixed-web Maven Webapp</name>
 	<properties>
 		<!-- Spring version -->
 		<version.spring>3.2.3.RELEASE</version.spring>
@@ -123,6 +123,11 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
+			<groupId>com.github.jknack</groupId>
+  			<artifactId>handlebars-springmvc</artifactId>
+  			<version>1.1.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.5.6</version>
@@ -187,7 +192,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>backend-web</finalName>
+		<finalName>mixed-web</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>

@@ -4,7 +4,7 @@ public class Message {
     
     private String userName;
     
-    private String message;
+    private String messageText;
 
     public String getUserName() {
         return userName;
@@ -14,12 +14,12 @@ public class Message {
         this.userName = userName;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMessageText() {
+        return messageText;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
     }
     
     
