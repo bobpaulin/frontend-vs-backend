@@ -1,12 +1,12 @@
-template = require 'views/templates/user'
+template = require 'views/templates/nav'
 View = require 'views/base/view'
 
 
-module.exports = class UserView extends View
+module.exports = class NavView extends View
 
   template: template
-  className: 'row-fluid'
-  container: '#userContainer'
+  className: 'navbar'
+  container: '.navigation'
   autoRender: true
   
   initialize: ->

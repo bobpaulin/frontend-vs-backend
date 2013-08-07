@@ -23,5 +23,7 @@
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg name="mongoDbFactory" ref="mongoFactory" />
     </bean>
+    
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/>
 
 </beans>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:cxf="http://cxf.apache.org/core" 
   xmlns:jaxrs="http://cxf.apache.org/jaxrs"
   xmlns:context="http://www.springframework.org/schema/context"
   xmlns:mongo="http://www.springframework.org/schema/data/mongo"
@@ -8,8 +9,8 @@
 http://www.springframework.org/schema/beans 
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-http://cxf.apache.org/jaxrs
-http://cxf.apache.org/schemas/jaxrs.xsd
+http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
 http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
 
   <import resource="classpath:META-INF/cxf/cxf.xml" />
@@ -18,16 +19,28 @@ http://www.springframework.org/schema/data/mongo http://www.springframework.org/
   <context:annotation-config/>
   <bean class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer"/>
   <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer"/>
-
+	
+<bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider">
+	</bean>
    <jaxrs:server id="services" address="/">
     <jaxrs:serviceBeans>
       <bean class="com.bobpaulin.frontend.UserService" />
       <bean class="com.bobpaulin.frontend.MessageService" />
+      <bean class="com.bobpaulin.frontend.BookService" />
     </jaxrs:serviceBeans>
     <jaxrs:providers>
         <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
     </jaxrs:providers>
     </jaxrs:server>
+    <jaxrs:client id="bookApi" address="https://www.googleapis.com"
+		serviceClass="com.bobpaulin.frontend.client.BookApi" inheritHeaders="true">
+		<jaxrs:providers>
+			<ref bean="jsonProvider" />
+		</jaxrs:providers>
+		<jaxrs:features>
+     		<cxf:logging/>
+		</jaxrs:features>
+	</jaxrs:client>
 	<mongo:mongo id="mongo" replica-set="localhost:27017" />
     <mongo:db-factory id="mongoFactory" mongo-ref="mongo"
         dbname="backend_data"/>

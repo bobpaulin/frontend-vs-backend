@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html lang="en">
 	<head>
 		<title>Backend Home Page</title>
@@ -9,38 +10,14 @@
 	</head>
 	<body>
 		<%@include file="/WEB-INF/jsp/navigation.jspf" %>
-		<h1>Welcome to the Backend Page</h1>
+		<h1>Post A Message</h1>
 		<div class="container-fluid">
 			<div id="userContainer">
-				<div class="row-fluid">
-					<div class="span6">${user.firstName }</div>
-					<div class="span6">${user.lastName }</div>
-				</div>
-			</div>
-			<div id="booksContainer">
-				
-						<c:forEach items="${bookResults.items}" var ="volItem">
-						<div class="row-fluid">
-							<div class="span12">
-							<a href="${volItem.volumeInfo.previewLink }">${volItem.volumeInfo.title }</a>
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="span6">
-								<img alt="" src="${volItem.volumeInfo.imageLinks.thumbnail }">
-							</div>
-							<div class="span6">
-								<img alt="" src="${volItem.volumeInfo.imageLinks.smallThumbnail }">
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="span12">
-							${volItem.volumeInfo.description }
-							</div>
-						</div>
-						</c:forEach>
-						
-					
+				<form:form action="/backend-web/main/createMessage">
+					<form:textarea path="messageText"/>
+					<form:hidden path="userName"/>
+					<input type="submit" class="btn btn-default"></input>
+				</form:form>
 			</div>
 			<div id="messagesContainer">
 				<div class="row-fluid">

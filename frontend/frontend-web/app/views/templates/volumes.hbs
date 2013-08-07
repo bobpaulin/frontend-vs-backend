@@ -1,0 +1,20 @@
+	{{#each items}}
+						<div class="row-fluid">
+							<div class="span12">
+							<a href="{{volumeInfo.previewLink }}">{{volumeInfo.title }}</a>
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="span6">
+								<img alt="" src="{{volumeInfo.imageLinks.thumbnail }}">
+							</div>
+							<div class="span6">
+								<img alt="" src="{{volumeInfo.imageLinks.smallThumbnail }}">
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="span12">
+							{{volumeInfo.description }}
+							</div>
+						</div>
+	{{/each}}

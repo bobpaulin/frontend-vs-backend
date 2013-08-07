@@ -1,0 +1,17 @@
+		<div class="navigation">
+			<div class="navbar">
+				<div class="navbar-inner">
+			        <div class="container">
+			        	<div class="nav-collapse">
+            				<ul class="nav">
+			        			<li><a href="/backend-web/main" >Home</a></li>
+			        			<li><a href="/backend-web/main/message" >Post Message</a></li>
+			        		</ul>
+			        	</div>
+			        	<c:if test="${not empty user }">
+					    <p id="userContainer" class="navbar-text pull-right">Signed in as ${user.firstName } ${user.lastName }</p>
+					    </c:if>
+			        </div>
+			    </div>
+			</div>
+		</div>
