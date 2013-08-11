@@ -27,6 +27,7 @@ http://www.springframework.org/schema/data/mongo http://www.springframework.org/
       <bean class="com.bobpaulin.frontend.UserService" />
       <bean class="com.bobpaulin.frontend.MessageService" />
       <bean class="com.bobpaulin.frontend.BookService" />
+      <bean class="com.bobpaulin.frontend.BookPreferenceService" />
     </jaxrs:serviceBeans>
     <jaxrs:providers>
         <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>

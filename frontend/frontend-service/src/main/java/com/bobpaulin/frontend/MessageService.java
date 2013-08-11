@@ -23,7 +23,7 @@ public class MessageService {
     
     
     @GET
-    @Path("/{userName}")
+    @Path("/user/{userName}")
     @Produces("application/json")
     public Response getUserMessages(@PathParam("userName") String userName)
     {
@@ -32,10 +32,20 @@ public class MessageService {
         return Response.ok(messageDataService.getUserMessages(userName)).cacheControl(cc).build();
     }
     
-    @POST
-    @Path("/{userName}")
+    @GET
+    @Path("/book/{bookId}")
     @Produces("application/json")
-    public Response addUserMessages(@PathParam("userName") String userName, Message message)
+    public Response getBookMessages(@PathParam("bookId") String bookId)
+    {
+        CacheControl cc = new CacheControl();
+        cc.setMaxAge(10);
+        return Response.ok(messageDataService.getBookMessages(bookId)).cacheControl(cc).build();
+    }
+    
+    @POST
+    @Path("/book/{bookId}")
+    @Produces("application/json")
+    public Response addMessages(@PathParam("bookId") String bookId, Message message)
     {
         messageDataService.save(message);
         return Response.ok().build();

@@ -5,6 +5,8 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 
 import java.util.List;
 
+import org.springframework.data.mongodb.core.query.Order;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import com.bobpaulin.shared.data.MessageDataService;
@@ -15,6 +17,14 @@ public class MessageDataServiceImpl extends AbstractDataService implements Messa
     
     public List<Message> getUserMessages(String userName)
     {
-        return getTemplate().find(query(where("userName").is(userName)), Message.class);
+        Query userMessageQuery = query(where("userName").is(userName));
+        userMessageQuery.sort().on("postDate", Order.ASCENDING);
+        return getTemplate().find(userMessageQuery, Message.class);
+    }
+    
+    public List<Message> getBookMessages(String bookId) {
+        Query bookMessageQuery = query(where("bookId").is(bookId));
+        bookMessageQuery.sort().on("postDate", Order.ASCENDING);
+        return getTemplate().find(bookMessageQuery, Message.class);
     }
 }

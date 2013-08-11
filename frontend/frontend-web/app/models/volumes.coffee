@@ -4,7 +4,7 @@ Model = require 'models/base/model'
 module.exports = class Volumes extends Model
 
   url: ->
-    '/frontend-service/books?search=vikings'
+    '/frontend-service/books?search=' + @get('keyword')
   
   initialize: ->
     super

@@ -3,6 +3,7 @@ package com.bobpaulin.frontend;
 import javax.annotation.Resource;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.CacheControl;
@@ -23,5 +24,15 @@ public class BookService {
         CacheControl cc = new CacheControl();
         cc.setMaxAge(10);
         return Response.ok(bookApi.getSearchResults(searchString, "US")).cacheControl(cc).build();
+    }
+    
+    @GET
+    @Produces("application/json")
+    @Path("/book/{bookId}")
+    public Response getBooks(@PathParam("bookId") String bookId)
+    {
+        CacheControl cc = new CacheControl();
+        cc.setMaxAge(10);
+        return Response.ok(bookApi.getBook(bookId, "US")).cacheControl(cc).build();
     }
 }
