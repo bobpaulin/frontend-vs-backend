@@ -7,7 +7,7 @@ module.exports = class NavView extends View
   template: template
   className: 'navbar'
   container: '.navigation'
-  autoRender: true
+  autoRender: false
   
   initialize: ->
     @subscribeEvent 'user:modelChanged', @doModelChange

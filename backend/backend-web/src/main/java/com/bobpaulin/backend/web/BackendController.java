@@ -114,16 +114,6 @@ public class BackendController {
         return "main";
     }
     
-    @RequestMapping(value={"message"}, method=RequestMethod.GET)
-    public String openMessageForm(@CookieValue(defaultValue="bpaulin", value="userName" ) String userName, Model model )
-    {
-        Message message = new Message();
-        message.setUserName(userName);
-        model.addAttribute("messageList", messageDataService.getUserMessages(userName));
-        model.addAttribute("command", message);
-        return "message";
-    }
-    
     @RequestMapping(value= { "/createMessage"}, method= RequestMethod.POST)
     public String createMessage(@ModelAttribute("newMessage")
     Message newMessage, BindingResult result)

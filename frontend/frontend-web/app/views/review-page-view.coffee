@@ -6,3 +6,4 @@ module.exports = class ReviewPageView extends View
   className: 'review-page'
   template: template
   container: 'body'
+  

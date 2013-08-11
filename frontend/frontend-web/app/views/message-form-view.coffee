@@ -12,4 +12,4 @@ module.exports = class MessageFormView extends View
   }
   
   submitMessage:->
-    @options.messages.create({userName:@options.userName, bookId:@options.bookId, messageText:$('[name="messageText"]').val()})
+    @options.messages.create({userName:@model.get('userName'), bookId:@options.bookId, messageText:$('[name="messageText"]').val()})

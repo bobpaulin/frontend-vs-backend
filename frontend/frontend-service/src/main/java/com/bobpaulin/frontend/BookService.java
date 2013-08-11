@@ -23,7 +23,7 @@ public class BookService {
     {
         CacheControl cc = new CacheControl();
         cc.setMaxAge(10);
-        return Response.ok(bookApi.getSearchResults(searchString, "US")).cacheControl(cc).build();
+        return Response.ok(bookApi.getSearchResults(searchString, "US").getItems()).cacheControl(cc).build();
     }
     
     @GET

@@ -7,7 +7,6 @@ module.exports = class MessagesView extends CollectionView
   template: template
   container: '#messageContainer'
   tagName: 'div'
-  className: 'row-fluid'
   autoRender: true
   listSelector: '.messages'
   

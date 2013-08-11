@@ -8,7 +8,8 @@ module.exports = class Volume extends Model
   
   initialize: ->
     super
-    @fetch(
-      success:(model,response)->
-        Chaplin.mediator.publish 'volume:modelChanged'
-    )
+    if arguments[0].bookId?
+      @fetch(
+        success:(model,response)->
+          Chaplin.mediator.publish 'volume:modelChanged'
+      )
