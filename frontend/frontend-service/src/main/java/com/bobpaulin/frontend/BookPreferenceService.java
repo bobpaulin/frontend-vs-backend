@@ -39,6 +39,7 @@ public class BookPreferenceService {
     @Path("/user/{userName}")
     public Response addUserBookPreference(@PathParam("userName") String userName, BookPreference bookPreference)
     {
+        bookPreference.setUserName(userName);
         bookPreferenceDataService.save(bookPreference);
         return Response.ok().build();
     }

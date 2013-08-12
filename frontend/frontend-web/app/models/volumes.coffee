@@ -5,15 +5,15 @@ Volume = require 'models/volume'
 module.exports = class Volumes extends Collection
 
   model: Volume
-  keyword: null
 
   url: ->
-    '/frontend-service/books?search=' + @keyword
+    '/frontend-service/books/user/' + $.cookie("userName")
+  fetch:->
+    super(
+      success:(model,response)->
+        Chaplin.mediator.publish 'volumes:modelChanged'
+     )
   
   initialize: ->
     super
-    @keyword = arguments[0].keyword
-    @fetch(
-      success:(model,response)->
-        Chaplin.mediator.publish 'volumes:modelChanged'
-    )
+    @fetch()

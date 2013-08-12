@@ -24,7 +24,6 @@ module.exports = class HomeController extends Controller
 
   initialize: ->
     super
-    @subscribeEvent 'bookPreferences:modelChanged', @loadBooks
   
   index: ->
     @view = new HomePageView
@@ -32,6 +31,7 @@ module.exports = class HomeController extends Controller
     @initIndexModel()
     new NavView({model:@user})
     new BookPreferencesView collection:@bookPreferences
+    new VolumesView collection:@volumes
     
   reviewPage:(params) ->
     @initUser()
@@ -44,21 +44,14 @@ module.exports = class HomeController extends Controller
     new VolumeView({model:@volume})
     new MessagesView({collection:@messages, bookId:params.bookId})
     new MessageFormView({model:@user, messages:@messages, bookId:params.bookId})
-  
-  loadBooks:->
-    @bookPreferences.each (model) ->
-      if @volumes?
-        @volumes.keyword = model.get('keyword')
-        @volumes.fetch()
-      else
-        @volumes = new VolumesModel({keyword: model.get('keyword')})
-      new VolumesView({collection:@volumes})
 
   initUser: ->
     @user = new UserModel unless @user?
     
   initIndexModel: ->
     @bookPreferences = new BookPreferencesModel unless @bookPreferences?
+    @volumes = new VolumesModel unless @volumes?
+    
     
   initReviewModel:(bookId) ->
     @volume = new VolumeModel({bookId:bookId}) unless @volume?
