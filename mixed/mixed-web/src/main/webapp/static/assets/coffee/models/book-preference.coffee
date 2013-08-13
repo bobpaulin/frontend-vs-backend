@@ -1,0 +1,1 @@
+window.BookPreference = class BookPreference extends Backbone.Model
