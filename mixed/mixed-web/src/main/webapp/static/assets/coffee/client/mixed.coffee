@@ -1,11 +1,16 @@
-messages = new Messages([], {bookId:'RhuT2nZayP4C'})
 
-messagesView = new MessagesView({model:messages})
+if window.location.pathname is '/mixed-web/main'
+  bookPreferences = new BookPreferences()
 
-messages.fetch()
+  bookPreferencesView = new BookPreferencesView({model: bookPreferences})
 
-bookPreferences = new BookPreferences([], {userName:'bpaulin'})
+  bookPreferences.fetch()
 
-bookPreferencesView = new BookPreferencesView({model: bookPreferences})
+else if window.location.pathname.startsWith '/mixed-web/main/review'
+  
+  
+  messages = new Messages([], {bookId: window.location.pathname.replace('/mixed-web/main/review/', '') })
 
-bookPreferences.fetch()
+  messagesView = new MessagesView({model:messages})
+
+  messages.fetch()

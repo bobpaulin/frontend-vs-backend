@@ -34,7 +34,8 @@ public class BookService {
     public Response searchBooks(@PathParam("userName") String userName)
     {
         CacheControl cc = new CacheControl();
-        cc.setMaxAge(10);
+        cc.setNoCache(true);
+        cc.setNoStore(true);
         
         List<VolumeItem> results = new ArrayList<VolumeItem>();
         
@@ -56,7 +57,7 @@ public class BookService {
     public Response getBooks(@PathParam("bookId") String bookId)
     {
         CacheControl cc = new CacheControl();
-        cc.setMaxAge(10);
+        cc.setMaxAge(86400);
         return Response.ok(bookApi.getBook(bookId, "US")).cacheControl(cc).build();
     }
 }

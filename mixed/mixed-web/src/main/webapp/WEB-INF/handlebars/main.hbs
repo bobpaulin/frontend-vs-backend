@@ -2,10 +2,7 @@
 <html lang="en">
 	<head>
 		<title>Mixed Home Page</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="/mixed-web/wro/vendor.js"></script>
-		<script src="/mixed-web/wro/app.js"></script>
-		<link href="/mixed-web/wro/vendor.css" rel="stylesheet" />
+		{{> head}}
 	</head>
 	<body>
 		{{> navigation}}
@@ -17,28 +14,6 @@
 			</div>
 			<div id="booksContainer">
 				
-						{{#each bookResults}}
-						<div class="row-fluid">
-							<div class="span12">
-							<a href="{{this.volumeInfo.previewLink }}">{{this.volumeInfo.title }}</a>
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="span12">
-								<img alt="" src="{{this.volumeInfo.imageLinks.thumbnail }}">
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="span12">
-							{{this.volumeInfo.description }}
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="span12">
-							<a href="main/review/{{this.id }}">See Reviews</a>
-							</div>
-						</div>
-						{{/each}}
 			</div>
 		</div>
 	</body>

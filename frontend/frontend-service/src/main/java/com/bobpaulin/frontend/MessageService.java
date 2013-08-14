@@ -28,7 +28,8 @@ public class MessageService {
     public Response getUserMessages(@PathParam("userName") String userName)
     {
         CacheControl cc = new CacheControl();
-        cc.setMaxAge(10);
+        cc.setNoCache(true);
+        cc.setNoStore(true);
         return Response.ok(messageDataService.getUserMessages(userName)).cacheControl(cc).build();
     }
     
@@ -38,7 +39,8 @@ public class MessageService {
     public Response getBookMessages(@PathParam("bookId") String bookId)
     {
         CacheControl cc = new CacheControl();
-        cc.setMaxAge(10);
+        cc.setNoCache(true);
+        cc.setNoStore(true);
         return Response.ok(messageDataService.getBookMessages(bookId)).cacheControl(cc).build();
     }
     

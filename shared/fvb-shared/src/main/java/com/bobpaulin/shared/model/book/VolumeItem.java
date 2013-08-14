@@ -7,6 +7,8 @@ public class VolumeItem {
     
     private VolumeInfo volumeInfo;
     
+    private boolean displayReviewLink;
+    
     private String id;
     
     public String getId() {
@@ -24,4 +26,12 @@ public class VolumeItem {
     public void setVolumeInfo(VolumeInfo volumeInfo) {
         this.volumeInfo = volumeInfo;
     }
+    
+    public boolean isDisplayReviewLink() {
+		return displayReviewLink;
+	}
+    
+    public void setDisplayReviewLink(boolean displayReviewLink) {
+		this.displayReviewLink = displayReviewLink;
+	}
 }

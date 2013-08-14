@@ -6,7 +6,7 @@
   bookId: null
   
   url: ->
-    '/frontend-service/messages/book/' + @bookId
+    '/mixed-web/main/messages/book/' + @bookId
   
   initialize: ->
     super

@@ -20,5 +20,15 @@ window.BookPreferencesView = class BookPreferencesView extends View
     # Instantiate an item view
     currentView = new BookPreferenceView {model:item}
     $('.preferences').append(currentView.render().el)
+    currentVolumesHtml = new VolumesHtml
+    currentVolumesHtml.set 'keyword', item.get('keyword')
+    currentSnippet = new SnippetView({container:'#booksContainer', model:currentVolumesHtml})
+    currentVolumesHtml.fetch({
+      dataType : 'html',
+      success:(model,status) =>
+        snippet = model.get 'snippet'
+        currentSnippet.render()
+    })
+    
     
   

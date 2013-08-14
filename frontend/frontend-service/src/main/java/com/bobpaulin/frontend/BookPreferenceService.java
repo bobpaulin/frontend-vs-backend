@@ -29,7 +29,8 @@ public class BookPreferenceService {
         List<BookPreference> userBookPreferences = bookPreferenceDataService.getUserBookPreferences(userName);
         
         CacheControl cc = new CacheControl();
-        cc.setMaxAge(10);
+        cc.setNoCache(true);
+        cc.setNoStore(true);
         
         return Response.ok(userBookPreferences).cacheControl(cc).build();
     }
