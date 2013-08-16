@@ -30,7 +30,7 @@ module.exports = class HomeController extends Controller
     @initUser()    
     @initIndexModel()
     new NavView({model:@user})
-    new BookPreferencesView collection:@bookPreferences
+    new BookPreferencesView collection:@bookPreferences, volumes:@volumes
     new VolumesView collection:@volumes
     
   reviewPage:(params) ->

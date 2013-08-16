@@ -15,7 +15,7 @@ module.exports = class BookPreferencesView extends CollectionView
   }
   
   submitPreference:->
-    @collection.create({userName:@options.userName, keyword:$('[name="keyword"]').val()})
+    @collection.create({userName:@options.userName, keyword:$('[name="keyword"]').val()}, {success:@options.volumes.fetch()})
   
   initialize:->
     super
