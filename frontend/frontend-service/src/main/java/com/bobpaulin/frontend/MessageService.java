@@ -1,5 +1,6 @@
 package com.bobpaulin.frontend;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -49,6 +50,7 @@ public class MessageService {
     @Produces("application/json")
     public Response addMessages(@PathParam("bookId") String bookId, Message message)
     {
+    	message.setPostDate(new Date());
         messageDataService.save(message);
         return Response.ok().build();
     }

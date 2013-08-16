@@ -9,7 +9,7 @@ window.BookPreferencesView = class BookPreferencesView extends View
   }
   
   submitPreference:->
-    @model.create({userName:@options.userName, keyword:$('[name="keyword"]').val()})
+    @model.create({userName:$.cookie('userName'), keyword:$('[name="keyword"]').val()})
   
   render: ->
     super

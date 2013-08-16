@@ -93,45 +93,6 @@ public class MixedController {
         return "main";
     }
     
-    @RequestMapping(value = {"/search/{keyword}"}, method = RequestMethod.GET)
-    public String searchHtml(@PathVariable("keyword") String keyword, Model model)
-    {
-    	Map<String, String> vars = new HashMap<String, String>();
-        vars.put("query", keyword);
-    	BookResponse searchResults = restTemplate.getForObject("https://www.googleapis.com/books/v1/volumes?q={query}&country=US", BookResponse.class, vars);
-    	List<VolumeItem> searchItems = searchResults.getItems();
-    	if(searchItems != null)
-    	{
-    		for(VolumeItem currentVolume: searchItems)
-    		{
-    			currentVolume.setDisplayReviewLink(true);
-    			ImageLinks currentImageLinks = currentVolume.getVolumeInfo().getImageLinks();
-    			if(currentImageLinks != null)
-    			{
-    				String thumbnailUrl = currentImageLinks.getThumbnail();
-    				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    				try {
-    					URL imageUrl = new URL(thumbnailUrl);
-    					URLConnection myconn = imageUrl.openConnection();
-    					//Add user agent to fake out google
-    					myconn.setRequestProperty("User-Agent","User-Agent:Mozilla/5.0 (Windows NT 6.1; rv:7.0.1) Gecko/20100101 Firefox/7.0.1");
-    					myconn.setRequestProperty("Accept", "Accept:image/*");
-						ImageIO.write(ImageIO.read(myconn.getInputStream()), "jpeg", baos);
-						currentImageLinks.setThumbnail("data:image/jpeg;base64,"+ DatatypeConverter.printBase64Binary(baos.toByteArray()));
-					} catch (MalformedURLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-    			}
-    		}
-    	}
-    	model.addAttribute("items", searchItems);
-    	return "allVolumes";
-    }
-    
     @RequestMapping(value = {"/review/{bookId}"}, method = RequestMethod.GET)
     public String review(@CookieValue(defaultValue="bpaulin", value="userName" ) String userName, @PathVariable("bookId") String bookId, Model model)
     {
@@ -163,26 +124,23 @@ public class MixedController {
         return "main";
     }
     
-    @RequestMapping(value= { "/createMessage"}, method= RequestMethod.POST)
-    public String createMessage(@ModelAttribute("newMessage")
-    Message newMessage, BindingResult result)
-    {
-        
-        newMessage.setPostDate(new Date());
-        messageDataService.save(newMessage);
-        return "redirect:review/" + newMessage.getBookId();
-    }
-    
-    @RequestMapping(value= { "/createBookPreference"}, method= RequestMethod.POST)
-    public String createBookPreference(@ModelAttribute("newPreference")
+    @RequestMapping(method = RequestMethod.POST, value="/bookPreferences/user/{userName}", headers="Accept=*/*")
+    public void createBookPreference(@ModelAttribute("newPreference")
     BookPreference newBookPreference, BindingResult result)
     {
         bookPreferenceDataService.save(newBookPreference);
-        return "redirect:/main";
     }
+    
     @RequestMapping(method = RequestMethod.GET, value="/messages/book/{bookId}", headers="Accept=*/*")
     public @ResponseBody List<Message> getMessages(@PathVariable("bookId") String bookId){
         return messageDataService.getBookMessages(bookId);
+    }
+    
+    @RequestMapping(method = RequestMethod.POST, value="/messages/book/{bookId}", headers="Accept=*/*")
+    public void getMessages(@ModelAttribute("newMessage")
+    Message newMessage, BindingResult result){
+    	newMessage.setPostDate(new Date());
+        messageDataService.save(newMessage);
     }
     
     @RequestMapping(method = RequestMethod.GET, value="/bookPreferences/user/{userName}", headers="Accept=*/*")

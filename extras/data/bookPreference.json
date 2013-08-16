@@ -1,0 +1,6 @@
+{  "_class" : "com.bobpaulin.shared.model.BookPreference", "userName" : "bpaulin", "keyword" : "vikings" }
+{  "_class" : "com.bobpaulin.shared.model.BookPreference", "userName" : "bpaulin", "keyword" : "bears" }
+{  "_class" : "com.bobpaulin.shared.model.BookPreference", "userName" : "bpaulin", "keyword" : "lions" }
+{  "_class" : "com.bobpaulin.shared.model.BookPreference", "userName" : "userWithPrefs1", "keyword" : "vikings" }
+{  "_class" : "com.bobpaulin.shared.model.BookPreference", "userName" : "userWithPrefs1", "keyword" : "bears" }
+{  "_class" : "com.bobpaulin.shared.model.BookPreference", "userName" : "userWithPrefs1", "keyword" : "lions" }

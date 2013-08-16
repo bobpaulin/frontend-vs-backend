@@ -35,12 +35,7 @@
 				</div>
 			</div>
 			<div id="newMessageContainer">
-				<form action="/mixed-web/main/createMessage">
-					<textarea name="messageText"></textarea>
-					<input type="hidden" name="userName" value="{{user.userName}}"/>
-					<input type="hidden" name="bookId" value="{{bookData.id}}"/>
-					<input type="submit" class="btn btn-default"></input>
-				</form>
+				{{> message-form}}
 			</div>
 		</div>
 	</body>

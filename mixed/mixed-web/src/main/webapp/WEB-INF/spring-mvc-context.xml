@@ -20,13 +20,24 @@
 	<mvc:default-servlet-handler />
 	
 	<mvc:interceptors>
-	    <bean id="webContentInterceptor" 
+		<mvc:interceptor>
+			<mvc:mapping path="/main/**/*"/>
+			<bean id="noCacheebContentInterceptor" 
 	          class="org.springframework.web.servlet.mvc.WebContentInterceptor">
-	        <property name="cacheSeconds" value="0"/>
-	        <property name="useExpiresHeader" value="true"/>
-	        <property name="useCacheControlHeader" value="true"/>
-	        <property name="useCacheControlNoStore" value="true"/>
-	    </bean>
+		        <property name="cacheSeconds" value="0"/>
+		        <property name="useExpiresHeader" value="true"/>
+		        <property name="useCacheControlHeader" value="true"/>
+		        <property name="useCacheControlNoStore" value="true"/>
+		    </bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/cached/**/*"/>
+			<bean id="cachedWebContentInterceptor" 
+	          class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+		        <property name="cacheSeconds" value="86400"/>
+		        <property name="useExpiresHeader" value="true"/>
+		    </bean>
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 </beans>

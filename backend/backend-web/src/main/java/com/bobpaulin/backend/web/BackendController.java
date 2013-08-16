@@ -49,6 +49,15 @@ public class BackendController {
     @Autowired
     private RestTemplate restTemplate;
     
+    private Map<String, Object> keywordCache;
+    
+    private Map<String, Object> bookCache;
+    
+    public BackendController() {
+		keywordCache = new HashMap<String, Object>();
+		bookCache = new HashMap<String, Object>();
+	}
+    
     @RequestMapping(value = {"","/"}, method = RequestMethod.GET)
     public String index(@CookieValue(defaultValue="bpaulin", value="userName" ) String userName, Model model)
     {
@@ -59,9 +68,8 @@ public class BackendController {
         {
             for(BookPreference currentPreference: bookPreferences)
             {
-                Map<String, String> vars = new HashMap<String, String>();
-                vars.put("query", currentPreference.getKeyword());
-                BookResponse searchResults = restTemplate.getForObject("https://www.googleapis.com/books/v1/volumes?q={query}&country=US", BookResponse.class, vars);
+            	BookResponse searchResults = getBookResponse(currentPreference);
+                
                 if(searchResults.getItems() != null)
                 {
                     bookResults.addAll(searchResults.getItems());
@@ -80,6 +88,21 @@ public class BackendController {
         
         return "main";
     }
+
+	private BookResponse getBookResponse(BookPreference currentPreference) {
+		BookResponse searchResults;
+		if(keywordCache.containsKey(currentPreference.getKeyword()))
+		{
+			searchResults = (BookResponse)keywordCache.get(currentPreference.getKeyword());
+		}else
+		{
+			Map<String, String> vars = new HashMap<String, String>();
+		    vars.put("query", currentPreference.getKeyword());
+		    searchResults = restTemplate.getForObject("https://www.googleapis.com/books/v1/volumes?q={query}&country=US", BookResponse.class, vars);
+		    keywordCache.put(currentPreference.getKeyword(), searchResults);
+		}
+		return searchResults;
+	}
     
     @RequestMapping(value = {"/review/{bookId}"}, method = RequestMethod.GET)
     public String review(@CookieValue(defaultValue="bpaulin", value="userName" ) String userName, @PathVariable("bookId") String bookId, Model model)
@@ -87,9 +110,8 @@ public class BackendController {
         User user = userDataService.getUser(userName);
         List<Message> bookMessages = messageDataService.getBookMessages(bookId);
         
-        Map<String, String> vars = new HashMap<String, String>();
-        vars.put("bookId", bookId);
-        VolumeItem bookData = restTemplate.getForObject("https://www.googleapis.com/books/v1/volumes/{bookId}?country=US", VolumeItem.class, vars);
+        VolumeItem bookData = getBookData(bookId);
+        
         
         Message message = new Message();
         message.setUserName(userName);
@@ -101,6 +123,21 @@ public class BackendController {
         model.addAttribute("messageList", bookMessages);
         return "bookReview";
     }
+
+	private VolumeItem getBookData(String bookId) {
+		VolumeItem bookData;
+		if(bookCache.containsKey(bookId))
+        {
+        	bookData = (VolumeItem)bookCache.get(bookId);
+        }else
+        {
+        	Map<String, String> vars = new HashMap<String, String>();
+            vars.put("bookId", bookId);
+            bookData = restTemplate.getForObject("https://www.googleapis.com/books/v1/volumes/{bookId}?country=US", VolumeItem.class, vars);
+            bookCache.put(bookId, bookData);
+        }
+		return bookData;
+	}
     
     
     @RequestMapping(value= {"/createUser"}, method = RequestMethod.POST)
