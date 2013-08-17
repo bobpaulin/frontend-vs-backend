@@ -2,8 +2,9 @@ window.MessageFormView = class MessageFormView extends View
 
   template: Handlebars.templates['message-form']
   className: 'row-fluid'
-  id: 'newMessageContainer'
+  container: '#newMessageContainer'
   bookId: null
+  messages: null
   
   events: {
     'click #submitMessage' : 'submitMessage'
@@ -12,13 +13,8 @@ window.MessageFormView = class MessageFormView extends View
   initialize:->
     super
     @bookId = arguments[0].bookId
-    @render()
+    @messages = arguments[0].messages
+    @listenTo(@messages, 'sync', @render)
   
   submitMessage:->
-    @model.create({userName:$.cookie('userName'), bookId:@bookId, messageText:$('[name="messageText"]').val()})
-
-  render:->
-  
-    @$el.html($('#newMessageContainer').html())
-    $('#newMessageContainer').html @el
-    this
+    @messages.create({userName:$.cookie('userName'), bookId:@bookId, messageText:$('[name="messageText"]').val()})

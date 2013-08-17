@@ -2,6 +2,8 @@ window.MessagesView = class MessagesView extends View
 
   template: Handlebars.templates['messages']
   tagName: 'div'
+  className: 'row-fluid'
+  container: '#messagesContainer'
   
   render: ->
     super
@@ -14,4 +16,3 @@ window.MessagesView = class MessagesView extends View
     currentView = new window.MessageView {model:item}
     $('.messages').append(currentView.render().el)
     
-  

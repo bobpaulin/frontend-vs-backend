@@ -1,6 +1,8 @@
 window.VolumesView = class VolumesView extends View
 
   template: Handlebars.templates['volumes']
+  container: '#booksContainer'
+  className: 'row-fluid'
   
   render: ->
     super
@@ -9,6 +11,12 @@ window.VolumesView = class VolumesView extends View
     
   initItemView: (item) ->
     # Instantiate an item view
-    item.set 'displayReviewLink', true
-    currentView = new VolumeView {model:item}
-    $('.volumes').append(currentView.render().el)
+    currentVolumesHtml = new VolumesHtml
+    currentVolumesHtml.set 'keyword', item.get('keyword')
+    currentSnippet = new SnippetView({container:'.volumes', model:currentVolumesHtml})
+    currentVolumesHtml.fetch({
+      dataType : 'html',
+      success:(model,status) =>
+        snippet = model.get 'snippet'
+        currentSnippet.render()
+    })
