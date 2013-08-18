@@ -5,7 +5,6 @@
 	<head>
 		<title>Review - ${bookData.volumeInfo.title }</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="/backend-web/wro/vendor.js"></script>
 		<link href="/backend-web/wro/vendor.css" rel="stylesheet" />
 	</head>
 	<body>
@@ -55,5 +54,6 @@
 				</form:form>
 			</div>
 		</div>
+		<script src="/backend-web/wro/vendor.js"></script>
 	</body>
 </html>

@@ -61,34 +61,23 @@ public class MixedController {
     @Autowired
     private RestTemplate restTemplate;
     
+    private Map<String, Object> bookCache;
+    
+     public MixedController() {
+		bookCache = new HashMap<String, Object>();
+	}
+    
     @RequestMapping(value = {"","/"}, method = RequestMethod.GET)
     public String index(@CookieValue(defaultValue="bpaulin", value="userName" ) String userName, Model model)
     {
-        List<VolumeItem> bookResults = new ArrayList<VolumeItem>();
         User user = userDataService.getUser(userName);
         List<BookPreference> bookPreferences = bookPreferenceDataService.getUserBookPreferences(userName);
-        if(bookPreferences != null)
-        {
-            for(BookPreference currentPreference: bookPreferences)
-            {
-                Map<String, String> vars = new HashMap<String, String>();
-                vars.put("query", currentPreference.getKeyword());
-                BookResponse searchResults = restTemplate.getForObject("https://www.googleapis.com/books/v1/volumes?q={query}&country=US", BookResponse.class, vars);
-                if(searchResults.getItems() != null)
-                {
-                    bookResults.addAll(searchResults.getItems());
-                }
-            }
-            
-        }
         
         BookPreference command = new BookPreference();
         command.setUserName(userName);
         model.addAttribute("command", command);
         model.addAttribute("bookPreferences", bookPreferences);
         model.addAttribute("user", user);
-        model.addAttribute("bookResults", bookResults);
-        
         
         return "main";
     }
@@ -100,7 +89,7 @@ public class MixedController {
         
         Map<String, String> vars = new HashMap<String, String>();
         vars.put("bookId", bookId);
-        VolumeItem bookData = restTemplate.getForObject("https://www.googleapis.com/books/v1/volumes/{bookId}?country=US", VolumeItem.class, vars);
+        VolumeItem bookData = getBookData(bookId);
         
         Message message = new Message();
         message.setUserName(userName);
@@ -111,6 +100,21 @@ public class MixedController {
         model.addAttribute("bookData", bookData);
         return "bookReview";
     }
+    
+    private VolumeItem getBookData(String bookId) {
+		VolumeItem bookData;
+		if(bookCache.containsKey(bookId))
+        {
+        	bookData = (VolumeItem)bookCache.get(bookId);
+        }else
+        {
+        	Map<String, String> vars = new HashMap<String, String>();
+            vars.put("bookId", bookId);
+            bookData = restTemplate.getForObject("https://www.googleapis.com/books/v1/volumes/{bookId}?country=US", VolumeItem.class, vars);
+            bookCache.put(bookId, bookData);
+        }
+		return bookData;
+	}
     
     
     @RequestMapping(value= {"/createUser"}, method = RequestMethod.POST)
