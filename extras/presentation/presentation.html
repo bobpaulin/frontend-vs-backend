@@ -115,7 +115,7 @@
 					</section>
 					
 					<section>
-						<h2>The typical backend developer generally</h2>
+						<h4>The typical backend developer generally</h4>
 						<ul>
 							<li>Focus on the server side</li>
 							<li>Data Storage and Retrieval</li>
@@ -137,7 +137,7 @@
 					</section>	
 					
 					<section>
-						<h2>The typical frontend developer generally</h2>
+						<h4>The typical frontend developer generally</h4>
 						<ul>
 							<li>Client/Browser focused</li>
 							<li>Closer to creative/design</li>
@@ -175,11 +175,11 @@
 						</aside>
 					</section>
 					<section>
-						<h2>Frameworks often couple frontend and backend technolgies</h2>
+						<h2>Frameworks often couple frontend and backend technologies</h2>
 						<aside class="notes">
 							<ul>
 								<li>Ex JSF will inject js into the page</li>
-								<li>GWT Java to Javascript</li>
+								<li>GWT Java to JavaScript</li>
 								<li>Powerful technologies but it's hard to expect help from Frontend developer.  Forcing Java.</li>
 								<li>Also design teams don't often don't consider framework boundaries</li>
 							</ul>
@@ -187,16 +187,16 @@
 					</section>
 				</section>
 				<section>
-					<h2>Another way to think about the problem...</h2>
+					<h3>Another way to think about the problem...</h3>
 					<h4>An American Football analogy</h4>
 				</section>
 				<section>
 					<section>
-						<h2>Frontend Developers = Offensive Backs</h2>
+						<h3>Frontend Developers = Offensive Backs</h3>
 						<img src="images/frontendFootball.png"></img>
 					</section>
 					<section>
-						<h2>Frontend Developers = Offensive Backs</h2>
+						<h3>Frontend Developers = Offensive Backs</h3>
 						<ul>
 							<li>Score Points with Customers</li>
 							<li>Work is highly visible</li>
@@ -207,11 +207,11 @@
 				</section>
 				<section>
 					<section>
-						<h2>Backend Developers = Offensive Line</h2>
+						<h3>Backend Developers = Offensive Line</h3>
 						<img src="images/backendFootball.png"></img>
 					</section>
 					<section>
-						<h2>Backend Developers = Offensive Line</h2>
+						<h3>Backend Developers = Offensive Line</h3>
 						<ul>
 							<li>Enable other positions to do great work</li>
 							<li>Work is not usually visible</li>
@@ -268,6 +268,25 @@
 							<li>Page can't be cached but static resources can</li>
 				 		</ul>
 					</section>
+					<section>
+						<h2>Code</h2>
+						<ul>
+							<li>Spring MVC Controller</li>
+							<li>Spring Data Services</li>
+							<li>WRO4J Config</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>Spring MVC with annotations to bind URLs to controller</li>
+								<li>Spring Data is shared between projects. Has special apis to communication with Mongo and POJOs</li>
+								<li>WRO4J provides minification, consolidation ETags, caching.. and possibily much much more....</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Architecture</h2>
+						<img src="images/BackendUser.jpg"></img>
+					</section>
 				</section>
 				<section>
 					<section>
@@ -294,13 +313,41 @@
 							<li>Apache CXF Provides Restful Services(Consumers/Producers) JAX-RS</li>
 							<li>Single Page Application Behavior via Chaplin</li>
 							<li>Node.js but only for Brunch Compilation</li>
-							<li>More Caching options based on data: Volitile vs Static</li>
+							<li>All pages and frontend code cached</li>
+							<li>Some Data Services Cached: Volitile vs Static</li>
 				 		</ul>
+					</section>
+					<section>
+						<h2>Code</h2>
+						<ul>
+							<li>index.html - look ma only 16 lines of serverside html!</li>
+							<li>Chaplin Controller</li>
+							<li>Chaplin Views</li>
+							<li>Chaplin Models</li>
+							<li>Handlebars Templates</li>
+							<li>Apache CXF JAX-RS</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>Skinny html file loads quickly all html built and bound in the browser</li>
+								<li>All JS and CSS compiled with Node.js</li>
+								<li>MVC in the frontend</li>
+								<li>Book Preferences View</li>
+								<li>Book Preference Model</li>
+								<li>Handlebars Templates compile to JS</li>
+								<li>Apache CXF provides JSON data to models.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Architecture</h2>
+						<img src="images/FrontendUser.jpg"></img>
 					</section>
 				</section>
 				<section>
 					<section>
 						<h2>A Mixed Recipe</h2>
+						<div style="float: left">
 						<h4>Frontend Tech</h4>
 						<ul>
 							<li>Backbone</li>
@@ -308,6 +355,8 @@
 							<li>Handlebars</li>
 							<li>Twitter Bootstrap</li>
 						</ul>
+						</div>
+						<div>
 						<h4>Backend Tech</h4>
 						<ul>
 							<li>Spring MVC</li>
@@ -320,6 +369,7 @@
 							<li>Apache Http Server</li>
 							<li>Amazon Cloudfront (CDN)</li>
 						</ul>
+						</div>
 					</section>
 					<section>
 						<h2>Design</h2>
@@ -327,10 +377,31 @@
 							<li>Some Services are done through AJAX others on Serverside</li>
 							<li>Apache CXF Provides Restful Services(Consumers/Producers) JAX-RS</li>
 							<li>Page turn between Homepage and Reviews</li>
+							<li>Page can't be cached but static and service resources can</li>
 							<li>Page actions do not require page turns</li>
 							<li>Templates are shared between frontend and backend</li>
-							<li>Book Searches are cached with data uris</li>
+							<li>Book Searches are cached with data URIs</li>
 				 		</ul>
+					</section>
+					<section>
+						<h2>Code</h2>
+						<ul>
+							<li>Cached Controller</li>
+							<li>WRO4J</li>
+							<li>Backbone Views</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>Data URIs</li>
+								<li>All JS compiled and consolidated serverside</li>
+								<li>Server side capabile of running the same HBS that run in the browser</li>
+								<li>Views bind the same way as in Chaplin</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Architecture</h2>
+						<img src="images/MixedUser.jpg"></img>
 					</section>
 				</section>
 				<section>
@@ -408,7 +479,7 @@
 					</section>
 					<section>
 						<h2>Comparative Results Big Data</h2>
-						<img src="images/bigCombine.JPG"></img>
+						<img src="images/bigComparative.JPG"></img>
 						<aside class="notes">
 							Don't forget to add notes.
 						</aside>
@@ -422,25 +493,50 @@
 					</section>
 				</section>
 				<section>
-					<h2>Backend Summary</h2>
+					<h2>Discussion</h2>
 					<ul>
-						<li></li>
+						<li>What does this data tell us?</li>
+						<li>What does it not tell us?</li>
 					</ul>
 					<aside class="notes">
-						Don't forget to add notes.
+						Any suprises.  Further optimizations.
 					</aside>
 				</section>
 				<section>
-					<h2>Bob's Code</h2>
-					<pre><code contenteditable>
-						for(String curString: theList)
-						{
-						     System.out.println("The Item " + curString);
-						}
-					</code></pre>
-					<aside class="notes">
-						Don't forget to add notes.
-					</aside>
+					<h2>Conclusions</h2>
+				</section>
+				<section>
+					<h2>Backend Summary</h2>
+					<ul>
+						<li>Most consistant load times</li>
+						<li>Better performance with static data</li>
+						<li>Less requests</li>
+						<li>Full page loads for incremental changes can prevent optimal performance</li>
+						<li>Data is embedded within the page so it can be separated into different TTL</li>
+						<li>Dynamic content within the JSP prevents pages from being cached. Increases traffic to the origin</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Frontend Summary</h2>
+					<ul>
+						<li>Requests handled independantly.  Enables fine grain caching</li>
+						<li>Eliminates page turns to refesh data model</li>
+						<li>Significant caching opportunities at the edge</li>
+						<li>Generates more requests</li>
+						<li>Higher memory and CPU consumption on the client end</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Mixed Summary</h2>
+					<ul>
+						<li>Allows the most flexibility in how information is loaded</li>
+						<li>Code reuse at the template level</li>
+						<li>Eliminates some page turns related to data updates</li>
+						<li>Performance suffers when both page and services are volitile (non-cachable)</li>
+					</ul>
+				</section>
+				<section>
+					<h2>References</h2>
 				</section>
 			</div>
 
