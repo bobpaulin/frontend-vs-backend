@@ -72,7 +72,8 @@
 					<ul>
 						<li>Using Frontend and Backend Frameworks Together</li>
 						<li>How developers work together</li>
-						<li>Advantages and disadvantages of Architectures</li>
+						<li>Advantages and disadvantages of architectures</li>
+						<li>Some empirical data on architecture performance</li>
 					</ul>
 					<aside class="notes">
 						Don't forget to add notes.
@@ -82,7 +83,7 @@
 					<h2>What this talk is NOT</h2>
 					<ul>
 						<li>Deep Dive into web frameworks</li>
-						<li>Answer which architecture is better</li>
+						<li>THE answer on which architecture is better</li>
 					</ul>
 					<aside class="notes">
 						Don't forget to add notes.
@@ -91,22 +92,247 @@
 				
 				<section>
 					<h2>How did we get here?</h2>
+					<ul>
+						<li>Complexity</li>
+						<li>Corporate Culture</li>
+						<li>Developer Aptitudes</li>
+					<ul>
 					<aside class="notes">
-						Don't forget to add notes.
+						<ul>
+							<li>The web has become very complex and the number of frameworks and technologies to tame it are exploding</li>
+							<li>Companies generally like to define structured roles and responsibilities.  For budgets/sanity</li>
+							<li>Frontend and backend developers have different complementary skill sets</li>
+						</ul>
 					</aside>
+				</section>
+				<section>
+					<section>
+						<h2>Backend developer</h2>
+						<img src="images/backendSkills.png"></img>
+						<aside class="notes">
+							Don't forget to add notes.
+						</aside>
+					</section>
+					
+					<section>
+						<h2>The typical backend developer generally</h2>
+						<ul>
+							<li>Focus on the server side</li>
+							<li>Data Storage and Retrieval</li>
+							<li>System Architecture</li>
+							<li>Does it work?</li>
+						</ul>
+						<aside class="notes">
+							Don't forget to add notes.
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Frontend developer</h2>
+						<img src="images/frontendSkills.png"></img>
+						<aside class="notes">
+							Don't forget to add notes.
+						</aside>
+					</section>	
+					
+					<section>
+						<h2>The typical frontend developer generally</h2>
+						<ul>
+							<li>Client/Browser focused</li>
+							<li>Closer to creative/design</li>
+							<li>Does it look right?</li>
+						</ul>
+						<aside class="notes">
+							Don't forget to add notes.
+						</aside>
+					</section>
+				</section>
+				<section>
+					<h2>Does this model actually work?</h2>
 				</section>
 				
 				<section>
-					<h2>Backend developer</h2>
+					<section>
+						<h2>Challenges with Frontend/Backend Teams</h2>
+					</section>
+					<section>
+						<h2>Competing requirements</h2>
+						<aside class="notes">
+							<ul>
+								<li>Usability vs Performance</li>
+								<li>Design vs Engineering capabilities</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Frequent Handoffs</h2>
+						<aside class="notes">
+							<ul>
+								<li>Impact analysis on both sides</li>
+								<li>I didn't think that change would break your stuff?</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Frameworks often couple frontend and backend technolgies</h2>
+						<aside class="notes">
+							<ul>
+								<li>Ex JSF will inject js into the page</li>
+								<li>GWT Java to Javascript</li>
+								<li>Powerful technologies but it's hard to expect help from Frontend developer.  Forcing Java.</li>
+								<li>Also design teams don't often don't consider framework boundaries</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<h2>Another way to think about the problem...</h2>
+					<h4>An American Football analogy</h4>
+				</section>
+				<section>
+					<section>
+						<h2>Frontend Developers = Offensive Backs</h2>
+						<img src="images/frontendFootball.png"></img>
+					</section>
+					<section>
+						<h2>Frontend Developers = Offensive Backs</h2>
+						<ul>
+							<li>Score Points with Customers</li>
+							<li>Work is highly visible</li>
+							<li>Can be limited by poor play at other positions</li>
+							<li>Often get the biggest share of blame when things go wrong and praise when things go right</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Backend Developers = Offensive Line</h2>
+						<img src="images/backendFootball.png"></img>
+					</section>
+					<section>
+						<h2>Backend Developers = Offensive Line</h2>
+						<ul>
+							<li>Enable other positions to do great work</li>
+							<li>Work is not usually visible</li>
+							<li>Mistakes often have a cascading effect</li>
+							<li>Generally only get blamed when things go wrong.  When things go right .... well things are just suppose to work all the time right?</li>
+						</ul>
+						<aside class="notes">
+							Keep this analogy in mind as we progress through the rest of the presentation... 
+						</aside>
+					</section>
+				</section>
+				<section>
+					<h2>Ok enough about your people problems lets look at some code already!</h2>
+				</section>
+				<section>
+					<h2>3 different approaches to the same web site</h2>
+					<h4>Requirements - A book review site</h4>
 					<ul>
-						<li>Java</li>
-						<li>Data Modeling</li>
-						<li>SOA</li>
+						<li>Allow users to select keyword preferences</li>
+						<li>Allow users to view and post review comments about a specific book</li>
+						<li>Should use responsive design.  Because well that's the hot new thing right?</li>
 					</ul>
-					<aside class="notes">
-						Don't forget to add notes.
-					</aside>
-				</section>						
+				</section>
+				<section>
+					<h2>Test Criteria</h2>
+					<ol>
+						<li>Homepage View</li>
+						<li>Add a New Book Preference</li>
+						<li>Open a Review</li>
+						<li>Add A Comment</li>
+					</ol>
+				</section>
+				<section>
+					<section>
+						<h2>A Backend Recipe</h2>
+						<ul>
+							<li>Spring MVC</li>
+							<li>Spring Data</li>
+							<li>MongoDB</li>
+							<li>Apache Tomcat</li>
+							<li>Apache Http Server</li>
+							<li>JSP</li>
+							<li>Twitter Bootstrap</li>
+							<li>WRO4J</li>
+							<li>Amazon Cloudfront (CDN)</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Design</h2>
+						<ul>
+							<li>Cache Google Api Response for Books and Book Search</li>
+							<li>Consolidate and minify CSS and JS using WRO4J</li>
+							<li>Page turn between Homepage and Reviews</li>
+							<li>Page can't be cached but static resources can</li>
+				 		</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>A Frontend Recipe</h2>
+						<ul>
+							<li>Brunch</li>
+							<li>ChaplinJS</li>
+							<li>CoffeeScript</li>
+							<li>Handlebars</li>
+							<li>Node.js</li>
+							<li>Apache CXF</li>
+							<li>Spring Data</li>
+							<li>MongoDB</li>
+							<li>Apache Tomcat</li>
+							<li>Apache Http Server</li>
+							<li>Twitter Bootstrap</li>
+							<li>Amazon Cloudfront (CDN)</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Design</h2>
+						<ul>
+							<li>All Services are done through AJAX</li>
+							<li>Apache CXF Provides Restful Services(Consumers/Producers) JAX-RS</li>
+							<li>Single Page Application Behavior via Chaplin</li>
+							<li>Node.js but only for Brunch Compilation</li>
+							<li>More Caching options based on data: Volitile vs Static</li>
+				 		</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>A Mixed Recipe</h2>
+						<h4>Frontend Tech</h4>
+						<ul>
+							<li>Backbone</li>
+							<li>CoffeeScript</li>
+							<li>Handlebars</li>
+							<li>Twitter Bootstrap</li>
+						</ul>
+						<h4>Backend Tech</h4>
+						<ul>
+							<li>Spring MVC</li>
+							<li>Handlebars.java</li>
+							<li>WRO4J</li>
+							<li>Apache CXF</li>
+							<li>Spring Data</li>
+							<li>MongoDB</li>
+							<li>Apache Tomcat</li>
+							<li>Apache Http Server</li>
+							<li>Amazon Cloudfront (CDN)</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Design</h2>
+						<ul>
+							<li>Some Services are done through AJAX others on Serverside</li>
+							<li>Apache CXF Provides Restful Services(Consumers/Producers) JAX-RS</li>
+							<li>Page turn between Homepage and Reviews</li>
+							<li>Page actions do not require page turns</li>
+							<li>Templates are shared between frontend and backend</li>
+							<li>Book Searches are cached with data uris</li>
+				 		</ul>
+					</section>
+				</section>
 				<section>
 					<section>
 						<h2>Homepage Results Small Data</h2>
