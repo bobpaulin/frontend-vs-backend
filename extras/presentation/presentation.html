@@ -60,13 +60,13 @@
 					<ul>
 						<li class="fragment">College students love seeing pictures of their friends doing stupid things at parties</li>
 						<li class="fragment">Photoshop can be used to make funny pictures even more funny</li>
-						<li class="fragment">The Dean will not find any of these pictures as funny as you do</li>
+						<li class="fragment">Do not host anything on your school's web property</li>
 					</ul>
 					<aside class="notes">
 						<ul>
 							<li>College students love seeing pictures of their friends doing stupid things at parties</li>
 							<li>Photoshop can be used to make funny pictures even more funny</li>
-							<li>The Dean will not find any of these pictures as funny as you do</li>
+							<li>Do not host anything on your school's web property.</li>
 						</ul>
 					</aside>
 				</section>
@@ -244,18 +244,6 @@
 					</ul>
 				</section>
 				<section>
-					<h2>Test Criteria</h2>
-					<ol>
-						<li>Homepage View</li>
-						<li>Add a New Book Preference</li>
-						<li>Open a Review</li>
-						<li>Add A Comment</li>
-					</ol>
-					<aside class="notes">
-						Demo Site. 
-					</aside>
-				</section>
-				<section>
 					<section>
 						<h2>A Backend Recipe</h2>
 						<ul>
@@ -325,7 +313,7 @@
 							<li>Single Page Application Behavior via Chaplin</li>
 							<li>Node.js but only for Brunch Compilation</li>
 							<li>All pages and frontend code cached</li>
-							<li>Some Data Services Cached: Volitile vs Static</li>
+							<li>Some Data Services Cached: Volatile vs Static</li>
 				 		</ul>
 					</section>
 					<section>
@@ -348,6 +336,27 @@
 								<li>Apache CXF provides JSON data to models.</li>
 							</ul>
 						</aside>
+					</section>
+					<section>
+						<h2>index.html</h2>
+						<pre><code data-trim contenteditable>
+&lt;!doctype html&gt;
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+&lt;head&gt;
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Frontend Home Page</title>
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="/frontend-web/stylesheets/app.css">
+  <script src="/frontend-web/javascripts/vendor.js"></script>
+  <script src="/frontend-web/javascripts/app.js"></script>
+  <script>require('initialize');</script>
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+						</code></pre>
 					</section>
 					<section>
 						<h2>Architecture</h2>
@@ -418,87 +427,80 @@
 					</aside>
 				</section>
 				<section>
-					<section>
-						<h2>Small Data</h2>
-						<img src="images/smallHomePage.JPG"></img>
-						<aside class="notes">
-							Don't forget to ask audience which they thing will be faster in each case.
-						</aside>
-					</section>
-					<section>
-						<h2>Small Data</h2>
-						<img src="images/smallPreferences.JPG"></img>
-						<aside class="notes">
-							Don't forget to ask audience which they thing will be faster in each case.
-						</aside>
-					</section>
-					<section>
-						<h2>Small Data</h2>
-						<img src="images/smallOpenReview.JPG"></img>
-						<aside class="notes">
-							Don't forget to ask audience which they thing will be faster in each case.
-						</aside>
-					</section>
-					<section>
-						<h2>Small Data</h2>
-						<img src="images/smallComment.JPG"></img>
-						<aside class="notes">
-							Don't forget to ask audience which they thing will be faster in each case.
-						</aside>
-					</section>
-					<section>
-						<h2>Small Data</h2>
-						<img src="images/smallComparative.JPG"></img>
-						<aside class="notes">
-							Don't forget to ask audience which they thing will be faster in each case.
-						</aside>
-					</section>
-					<section>
-						<h2>Small Data</h2>
-						<img src="images/smallCombine.JPG"></img>
-						<aside class="notes">
-							Don't forget to ask audience which they thing will be faster in each case.
-						</aside>
-					</section>
+					<h2>Test Design</h2>
+					<div><a href="http://www.webpagetest.org">Web Page Test</a></div>
+					<p>Browser - Current Chrome</p>
+					<p>Location - Virgina</p>
+					<p>Click events tested locally using Chrome Developer Tools</p>
+				</section>
+				<section>
+					<h2>Test Script</h2>
+					<ol>
+						<li>Homepage View</li>
+						<li>Add a New Book Preference</li>
+						<li>Open a Review</li>
+						<li>Add A Comment</li>
+					</ol>
+					<aside class="notes">
+						Demo Site. 
+					</aside>
 				</section>
 				<section>
 					<section>
-						<h2>Big Data</h2>
 						<img src="images/bigHomePage.JPG"></img>
 						<aside class="notes">
 							Don't forget to ask audience which they thing will be faster in each case.
 						</aside>
 					</section>
 					<section>
-						<h2>Big Data</h2>
+						<h3>Backend Homepage Waterfall</h3>
+						<img height="500" src="images/backendWaterfall.png"></img>
+					</section>
+					<section>
+						<h3>Frontend Homepage Waterfall</h3>
+						<img height="500" src="images/frontendWaterfall.png"></img>
+					</section>
+					<section>
+						<h3>Mixed Homepage Waterfall</h3>
+						<img src="images/mixedWaterfall.png"></img>
+					</section>
+					<section>
 						<img src="images/bigPreferences.JPG"></img>
 						<aside class="notes">
 							Don't forget to ask audience which they thing will be faster in each case.
 						</aside>
 					</section>
 					<section>
-						<h2>Big Data</h2>
 						<img src="images/bigOpenReview.JPG"></img>
 						<aside class="notes">
 							Don't forget to ask audience which they thing will be faster in each case.
 						</aside>
 					</section>
 					<section>
-						<h2>Big Data</h2>
+						<h3>Backend Review Waterfall</h3>
+						<img src="images/backendWaterfallReview.png"></img>
+					</section>
+					<section>
+						<h3>Frontend Review Waterfall</h3>
+						<img src="images/frontendWaterfallReview.png"></img>
+					</section>
+					<section>
+						<h3>Mixed Review Waterfall</h3>
+						<img src="images/mixedWaterfallReview.png"></img>
+					</section>
+					<section>
 						<img src="images/bigComment.JPG"></img>
 						<aside class="notes">
 							Don't forget to ask audience which they thing will be faster in each case.
 						</aside>
 					</section>
 					<section>
-						<h2>Big Data</h2>
 						<img src="images/bigComparative.JPG"></img>
 						<aside class="notes">
 							Don't forget to ask audience which they thing will be faster in each case.
 						</aside>
 					</section>
 					<section>
-						<h2>Big Data</h2>
 						<img src="images/bigCombine.JPG"></img>
 						<aside class="notes">
 							Don't forget to ask audience which they thing will be faster in each case.
@@ -510,6 +512,8 @@
 					<ul>
 						<li>What does this data tell us?</li>
 						<li>What does it not tell us?</li>
+						<li>Which is most scalable?</li>
+						<li>Variations between Browsers</li>
 					</ul>
 					<aside class="notes">
 						Any suprises.  Further optimizations.
@@ -525,7 +529,7 @@
 						<li>Better performance with static data</li>
 						<li>Less requests</li>
 						<li>Full page loads for incremental changes can prevent optimal performance</li>
-						<li>Data is embedded within the page so it can be separated into different TTL</li>
+						<li>Data is embedded within the page so it can't be separated into different TTL</li>
 						<li>Dynamic content within the JSP prevents pages from being cached. Increases traffic to the origin</li>
 					</ul>
 				</section>
@@ -545,11 +549,15 @@
 						<li>Allows the most flexibility in how information is loaded</li>
 						<li>Code reuse at the template level</li>
 						<li>Eliminates some page turns related to data updates</li>
-						<li>Performance suffers when both page and services are volitile (non-cachable)</li>
+						<li>Performance suffers when both page and services are volatile (non-cachable)</li>
 					</ul>
 				</section>
 				<section>
 					<h2>References</h2>
+					<div>
+						<h4>Code and Presentation</h4>
+						<a href="https://github.com/bobpaulin/frontend-vs-backend">Frontend "vs" Backend</a>
+					</div>
 					<div style="float: left">
 						<h4>Frontend</h4>
 						<ul>
@@ -561,7 +569,7 @@
 							<li><a href="http://getbootstrap.com/">Twitter Bootstrap</a></li>
 						</ul>
 					</div>
-					<div>
+					<div style="float: right">
 						<h4>Backend</h4>
 						<ul>
 							

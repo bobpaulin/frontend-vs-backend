@@ -1,7 +1,12 @@
 if not $.cookie('userName')?
   $.cookie 'userName', 'bpaulin'
 
-if window.location.pathname is '/mixed-web/main'
+user = new User()
+  
+userLoggedInView = new UserLoggedInView({model: user})
+
+if window.location.pathname is '/mixed-web/cached'
+
   bookPreferences = new BookPreferences()
 
   bookPreferencesView = new BookPreferencesView({model: bookPreferences})
@@ -10,9 +15,9 @@ if window.location.pathname is '/mixed-web/main'
     
   bookPreferences.fetch()
 
-else if window.location.pathname.match /^\/mixed-web\/main\/review/
+else if window.location.pathname.match /^\/mixed-web\/cached\/review/
   
-  bookId = window.location.pathname.replace('/mixed-web/main/review/', '')
+  bookId = window.location.pathname.replace('/mixed-web/cached/review/', '')
   messages = new Messages([], {bookId: bookId })
 
   messagesView = new MessagesView({model:messages})

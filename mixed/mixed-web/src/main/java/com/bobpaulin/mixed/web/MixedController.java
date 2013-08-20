@@ -61,61 +61,8 @@ public class MixedController {
     @Autowired
     private RestTemplate restTemplate;
     
-    private Map<String, Object> bookCache;
-    
      public MixedController() {
-		bookCache = new HashMap<String, Object>();
 	}
-    
-    @RequestMapping(value = {"","/"}, method = RequestMethod.GET)
-    public String index(@CookieValue(defaultValue="bpaulin", value="userName" ) String userName, Model model)
-    {
-        User user = userDataService.getUser(userName);
-        List<BookPreference> bookPreferences = bookPreferenceDataService.getUserBookPreferences(userName);
-        
-        BookPreference command = new BookPreference();
-        command.setUserName(userName);
-        model.addAttribute("command", command);
-        model.addAttribute("bookPreferences", bookPreferences);
-        model.addAttribute("user", user);
-        
-        return "main";
-    }
-    
-    @RequestMapping(value = {"/review/{bookId}"}, method = RequestMethod.GET)
-    public String review(@CookieValue(defaultValue="bpaulin", value="userName" ) String userName, @PathVariable("bookId") String bookId, Model model)
-    {
-        User user = userDataService.getUser(userName);
-        
-        Map<String, String> vars = new HashMap<String, String>();
-        vars.put("bookId", bookId);
-        VolumeItem bookData = getBookData(bookId);
-        
-        Message message = new Message();
-        message.setUserName(userName);
-        message.setBookId(bookId);
-        
-        model.addAttribute("command", message);
-        model.addAttribute("user", user);
-        model.addAttribute("bookData", bookData);
-        return "bookReview";
-    }
-    
-    private VolumeItem getBookData(String bookId) {
-		VolumeItem bookData;
-		if(bookCache.containsKey(bookId))
-        {
-        	bookData = (VolumeItem)bookCache.get(bookId);
-        }else
-        {
-        	Map<String, String> vars = new HashMap<String, String>();
-            vars.put("bookId", bookId);
-            bookData = restTemplate.getForObject("https://www.googleapis.com/books/v1/volumes/{bookId}?country=US", VolumeItem.class, vars);
-            bookCache.put(bookId, bookData);
-        }
-		return bookData;
-	}
-    
     
     @RequestMapping(value= {"/createUser"}, method = RequestMethod.POST)
     public String createUser(@RequestParam("userName") String userName, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName )
